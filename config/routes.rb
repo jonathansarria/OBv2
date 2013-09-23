@@ -1,5 +1,8 @@
 OBv2::Application.routes.draw do
-  get "home/index"
+  resources :cs_classes
+
+  root  'home#index'
+  match '/schedule_builder',  to: 'schedule_builder#show',            via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
