@@ -14,7 +14,27 @@
 ActiveRecord::Schema.define(version: 20130923011912) do
 
   create_table "cs_classes", force: true do |t|
-    t.text     "html"
+    t.string   "Status"
+    t.string   "CRN"
+    t.string   "Course"
+    t.string   "Sect"
+    t.string   "PartTerm"
+    t.string   "Title"
+    t.string   "CrHrs"
+    t.string   "BegDate"
+    t.string   "EndDate"
+    t.string   "Camp"
+    t.string   "Days"
+    t.string   "BegTime"
+    t.string   "End_Time"
+    t.string   "MeetType"
+    t.string   "Bldg"
+    t.string   "Room"
+    t.string   "Seats"
+    t.string   "Waitlist"
+    t.string   "Aprv"
+    t.string   "AddlFees"
+    t.string   "Instructor"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
