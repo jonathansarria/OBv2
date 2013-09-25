@@ -11,30 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923011912) do
+ActiveRecord::Schema.define(version: 20130925042817) do
 
-  create_table "cs_classes", force: true do |t|
-    t.string   "Status"
-    t.string   "CRN"
-    t.string   "Course"
-    t.string   "Sect"
-    t.string   "PartTerm"
-    t.string   "Title"
-    t.string   "CrHrs"
-    t.string   "BegDate"
-    t.string   "EndDate"
-    t.string   "Camp"
-    t.string   "Days"
-    t.string   "BegTime"
-    t.string   "End_Time"
-    t.string   "MeetType"
-    t.string   "Bldg"
-    t.string   "Room"
-    t.string   "Seats"
-    t.string   "Waitlist"
-    t.string   "Aprv"
-    t.string   "AddlFees"
-    t.string   "Instructor"
+  create_table "schedules", force: true do |t|
+    t.string   "status"
+    t.string   "crn"
+    t.string   "course"
+    t.string   "sect"
+    t.string   "part_term"
+    t.string   "title"
+    t.string   "cr_hrs"
+    t.string   "beg_date"
+    t.string   "end_date"
+    t.string   "camp"
+    t.string   "days"
+    t.string   "beg_time"
+    t.string   "end_time"
+    t.string   "meet_type"
+    t.string   "bldg"
+    t.string   "room"
+    t.string   "seats"
+    t.string   "waitlist"
+    t.string   "aprv"
+    t.string   "addl_fees"
+    t.string   "instructor"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

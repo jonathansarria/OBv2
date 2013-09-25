@@ -1,5 +1,5 @@
 class ScheduleBuilderController < ApplicationController
-  def show
-  	@schedule = CsClass.all
+  def index
+  	@courses = Schedule.available
   end
 end

@@ -1,0 +1,24 @@
+
+<div class="pagebodydiv">
+  <table  class="datadisplaytable" summary="This layout table is used to present the weekly course schedule." width="80%">
+    <tr>
+      <th>
+      <% (-6..0).each do |i| %>
+        <th scope="col" ><%= Date::DAYNAMES[i] %>
+      <% end %>
+    </tr>
+    <% (0...24).each do |i| %>
+      <tr>
+        <th scope="row" ><%= Time.now.change(hour: i).strftime("%l:%M %p") %>
+        <% (1..7).each do %>
+          <td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <div>
+    <% @courses.each do |elm| %>
+      <p><%= elm[:title]+"/"+elm[:course]+": "+elm[:beg_time]+"-"+elm[:end_time] %></p>
+    <% end %>
+  </div>
+</div>
