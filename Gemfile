@@ -46,3 +46,5 @@ end
 
 gem 'nokogiri'
 gem 'mechanize'
+gem "jquery-ui-rails"
+gem 'bootstrap-sass'
