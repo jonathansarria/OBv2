@@ -2,9 +2,9 @@
 
 #selectable .ui-selecting { background: #FECA40; }
 #selectable .ui-selected { background: #F39814; color: white; }
-#selectable { list-style-type: none; margin: 0; padding: 0; overflow: auto; max-height: 550px;}
+#selectable { list-style-type: none; margin: 0; padding: 0; overflow: auto; max-height: 425px; }
 #selectable li { padding: 0.4em;}
 
-.sched_menu {
-  
+.sched_table .sched_menu {
+  min-width: 550px
 }

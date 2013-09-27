@@ -3,16 +3,16 @@
   <div class="sched_table span7">
     <table summary="This layout table is used to present the weekly course schedule." >
       <tr>
-        <th>
+        <th></th> <!-- top left space -->
         <% (-6..0).each do |i| %>
-          <th scope="col" ><%= Date::DAYNAMES[i] %>
+          <th scope="col" ><%= Date::DAYNAMES[i] %></th>
         <% end %>
       </tr>
       <% (0...24).each do |i| %>
-        <tr>
-          <th scope="row" ><%= Time.now.change(hour: i).strftime("%l:%M %p") %>
+        <tr style="<%= (i>=@earliest && i<=@latest) ? 'display: inline' : 'display: none' %>">
+          <th scope="row" ><%= Time.now.change(hour: i).strftime("%l:%M %p") %></th>
           <% (1..7).each do %>
-            <td>
+            <td></td>
           <% end %>
         </tr>
       <% end %>
@@ -22,16 +22,8 @@
     <label class="radio inline" for="course_title"><input id="course_title" name="course" type="radio" value="course_title" />Course Title</label>
     <label class="radio inline" for="course_num"><input id="course_num" name="course" type="radio" value="course_num" />Course Number</label>
     <label class="radio inline" for="both"><input id="both" name="course" type="radio" value="both" checked />Both</label>
-    <ul id="selectable" >
-    <% @courses.each do |elm| %>
-      <% if elm[:beg_time].blank? %>
-        <li><span class="course_title"><%= elm[:title] %></span><span class="slash">/</span><span class="course_num"><%= elm[:course] %></span>: Online
-      <% elsif elm[:title].blank? %>
-        <li>&uarr;&nbsp;&nbsp;&nbsp;&nbsp;<%= elm[:beg_time]+"-"+elm[:end_time] %>
-      <% else %>
-        <li><span class="course_title"><%= elm[:title] %></span><span class="slash">/</span><span class="course_num"><%= elm[:course] %></span><%= ": "+elm[:beg_time]+"-"+elm[:end_time] %>
-      <% end %>
-    <% end %>
-    </ul>
+    <%= render 'schedule_builder/course_list' %>
+    <button type="button">tests</button>
+    <button type="button">chart</button>
   </div>
 </div>

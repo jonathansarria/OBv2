@@ -1,0 +1,11 @@
+<ul id="selectable" >
+  <% @courses.each do |elm| %>
+    <% if elm[:title].blank? %>
+      <li>&uarr;&nbsp;&nbsp;&nbsp;&nbsp;<%= elm[:beg_time]+"-"+elm[:end_time]+" on "+elm[:days] %>
+    <% elsif elm[:days].blank? %>
+      <li><span class="course_title"><%= elm[:title] %></span><span class="slash">/</span><span class="course_num"><%= elm[:course] %></span>: Online
+    <% else %>
+      <li><span class="course_title"><%= elm[:title] %></span><span class="slash">/</span><span class="course_num"><%= elm[:course] %></span><%= ": "+elm[:beg_time]+"-"+elm[:end_time]+" on "+elm[:days] %>
+    <% end %>
+  <% end %>
+</ul>
