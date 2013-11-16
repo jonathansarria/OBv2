@@ -27,4 +27,8 @@ class Schedule < ActiveRecord::Base
     
     return [earliest, latest]
   end
+
+  def Schedule.get_times(params)
+    puts params
+  end
 end

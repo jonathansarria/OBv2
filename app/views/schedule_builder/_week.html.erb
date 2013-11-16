@@ -1,0 +1,20 @@
+    <table summary="This layout table is used to present the weekly course schedule." class="table table-bordered">
+      <thead>
+        <tr>
+          <th></th> <!-- top left space -->
+          <% (-6..-2).each do |i| %>
+            <th scope="col" ><%= Date::DAYNAMES[i] %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <% (0...24).each do |i| %>
+        <tr class="<%= i.to_s %>">
+          <th scope="row" ><%= Time.now.change(hour: i).strftime("%l:%M %p") %></th>
+          <% (0...5).each do |i| %>
+            <td class="<%= @days_abbr[i] %>"></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>

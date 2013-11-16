@@ -3,8 +3,35 @@ class ScheduleBuilderController < ApplicationController
   	@courses = Schedule.available
     @earliest = 8
     @latest = 20
-
+    @days_abbr = ['M', 'T', 'W', 'R', 'F']
     get_min_times
+    @table_header = [#"status",
+                     "crn",
+                     "course",
+                     #"sect",
+                     #"part_term",
+                     "title",
+                     #"cr_hrs",
+                     "beg_date",
+                     "end_date",
+                     #"camp",
+                     "days",
+                     "beg_time",
+                     "end_time",
+                     #"meet_type",
+                     "bldg",
+                     "room",
+                     "seats",
+                     #"waitlist",
+                     #"aprv",
+                     #"addl_fees",
+                     "instructor"]
+
+    @time_sel = Array.new
+    (1..12).each do |i|
+      @time_sel << [Time.now.change(hour: i).strftime("%0l:%M"), i]
+    end
+
   end
 
   def get_min_times
@@ -23,6 +50,15 @@ class ScheduleBuilderController < ApplicationController
       end
     end
   end
+
+  def lol
+    #Schedule.get_times(params)
+    render text: params[:post].inspect
+    #get POST
+    #build sql (SELECT * FROM schedules WHERE time IN RANGE AND days IN RANGE)
+    #redirect to new page with w/e partials for new week
+  end
+
 
 =begin
   def get_times

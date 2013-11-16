@@ -1,0 +1,31 @@
+    <%= form_for :post do |f| %> <!-- , :url => {:action => "lol"} do |f| %> -->
+      <%= render "schedule_builder/courses" %>
+
+      <p>Beginning Times:</p>
+      <%= f.select :s_time, options_for_select(@time_sel, @earliest) %>
+      <%= f.select :s_meridiem, options_for_select(['am', 'pm']) %>
+      -
+      <%= f.select :e_time, options_for_select(@time_sel, @latest%12) %>
+      <%= f.select :e_meridiem, options_for_select(['am', 'pm'], 'pm') %>
+      <br/>
+      <%= f.label :Monday, :class => "checkbox-inline" do %>
+        <%= f.check_box :day, {id: 'post_Monday', multiple: true, checked: 'checked'}, 'M', nil %>M
+      <% end %>
+      <%= f.label :Tuesday, :class => "checkbox-inline" do %>
+        <%= f.check_box :day, {id: 'post_Tuesday', multiple: true, checked: 'checked'}, 'T', nil %>T
+      <% end %>
+      <%= f.label :Wednesday, :class => "checkbox-inline" do %>
+        <%= f.check_box :day, {id: 'post_Wednesday', multiple: true, checked: 'checked'}, 'W', nil %>W
+      <% end %>
+      <%= f.label :Thursday, :class => "checkbox-inline" do %>
+        <%= f.check_box :day, {id: 'post_Thursday', multiple: true, checked: 'checked'}, 'R', nil %>R
+      <% end %>
+      <%= f.label :Friday, :class => "checkbox-inline" do %>
+        <%= f.check_box :day, {id: 'post_Friday', multiple: true, checked: 'checked'}, 'F', nil %>F
+      <% end %>
+      <%= f.label :Online, :class => "checkbox-inline" do %>
+        <%= f.check_box :day, {id: 'post_Online', multiple: true}, 'O', nil %>O
+      <% end %>
+
+      <%= submit_tag(value = "Submit") %>
+    <% end %>

@@ -1,10 +1,14 @@
 @import "bootstrap";
 
-#selectable .ui-selecting { background: #FECA40; }
-#selectable .ui-selected { background: #F39814; color: white; }
-#selectable { list-style-type: none; margin: 0; padding: 0; overflow: auto; max-height: 425px; }
-#selectable li { padding: 0.4em;}
+#course_menu .ui-selecting { background: #FECA40; }
+#course_menu .ui-selected { background: #F39814; color: white; }
+#course_menu { list-style-type: none; margin: 0; padding: 0; overflow: auto; max-height: 425px; }
+#course_menu li { padding: 0.4em;}
 
-.sched_table .sched_menu {
-  min-width: 550px
+.sched_table, .sched_menu {
+  /* min-width: 550px */
+}
+
+#post_s_time, #post_s_meridiem, #post_e_time, #post_e_meridiem {
+  width: auto;
 }
