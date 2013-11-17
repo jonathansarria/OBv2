@@ -1,6 +1,19 @@
-    <%= form_for :post do |f| %> <!-- , :url => {:action => "lol"} do |f| %> -->
-      <%= render "schedule_builder/courses" %>
+    <%= form_for :post do |f| %>
 
+      <%= render "schedule_builder/courses" %>
+      
+      <noscript>
+<ul>
+  <% @table_header.each do |header| %>
+    <li><%= header %></li>
+  <% end %>
+</ul>
+
+    <%= f.select(:courses, options_for_select(@course_selection), {}, {:multiple=>true}) %>
+
+
+      </noscript>
+      
       <p>Beginning Times:</p>
       <%= f.select :s_time, options_for_select(@time_sel, @earliest) %>
       <%= f.select :s_meridiem, options_for_select(['am', 'pm']) %>

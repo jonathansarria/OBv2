@@ -26,6 +26,15 @@ class ScheduleBuilderController < ApplicationController
                      #"aprv",
                      #"addl_fees",
                      "instructor"]
+    @course_selection = []
+    selection = []
+    @courses.each do |course|
+      @table_header.each do |attr|
+        selection.push(course.send(attr))
+      end
+      @course_selection.push([selection.join(" "), course.crn])
+      selection = []
+    end
 
     @time_sel = Array.new
     (1..12).each do |i|

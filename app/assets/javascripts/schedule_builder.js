@@ -103,7 +103,7 @@ $(document).ready(function(){
     });
   });
 
-  /* Adds user selected classes to post */
+  /* Adds user selected classes to post TODO: add the data to the post array instead*/
   $( "form" ).submit(function( event ) {
     var selected = $(".ui-selected");
     var text = new Array();
@@ -114,6 +114,11 @@ $(document).ready(function(){
     });
 
     $(this).append('<input type="hidden" name="selected_classes" value="'+text.join(" ")+'" />');
+  });
+
+
+  $(function() {
+    $("#course_menu").show();
   });
 
 })
