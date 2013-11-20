@@ -3,6 +3,10 @@ class Schedule < ActiveRecord::Base
     self.where.not(status: ["Closed", "Cancelled"]).order(:title)
   end
 
+  def Schedule.available_refined(courses)
+    self.where(crn: courses)
+  end
+
   def Schedule.times
     earliest = Hash.new(nil)
     latest = Hash.new(nil)

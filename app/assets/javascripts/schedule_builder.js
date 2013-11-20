@@ -106,14 +106,14 @@ $(document).ready(function(){
   /* Adds user selected classes to post TODO: add the data to the post array instead*/
   $( "form" ).submit(function( event ) {
     var selected = $(".ui-selected");
-    var text = new Array();
+    var text = new Array(); //has to be submitted as array!
     
     $.each(selected, function (index, elm) {
       var $elm = $(elm);
       text.push($elm.attr("id"));
     });
 
-    $(this).append('<input type="hidden" name="selected_classes" value="'+text.join(" ")+'" />');
+    $(this).append('<input id="post_courses" type="hidden" name="post[courses][]" value="'+text.join(" ")+'" />');
   });
 
 

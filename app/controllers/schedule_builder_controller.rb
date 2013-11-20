@@ -1,6 +1,7 @@
 class ScheduleBuilderController < ApplicationController
   def index
-  	@courses = Schedule.available
+    @init = true
+    @courses = Schedule.available
     @earliest = 8
     @latest = 20
     @days_abbr = ['M', 'T', 'W', 'R', 'F']
@@ -27,6 +28,7 @@ class ScheduleBuilderController < ApplicationController
                      #"addl_fees",
                      "instructor"]
     @course_selection = []
+    
     selection = []
     @courses.each do |course|
       @table_header.each do |attr|
@@ -60,52 +62,14 @@ class ScheduleBuilderController < ApplicationController
     end
   end
 
-  def lol
-    #Schedule.get_times(params)
-    render text: params[:post].inspect
-    #get POST
-    #build sql (SELECT * FROM schedules WHERE time IN RANGE AND days IN RANGE)
-    #redirect to new page with w/e partials for new week
+  def week
+    @init = false
+    #Schedule.get_week(params[:post][:courses])
+    #render text: params[:post].inspect
+    index
+    @courses = Schedule.available_refined(params[:post][:courses][1..-1])
+    #get_min_times
+    render :index
   end
 
-
-=begin
-  def get_times
-    cont = {am: true, pm: true}
-    early = Hash.new(nil)
-    late = Hash.new(nil)
-
-    Schedule.times.each do |time|
-      if time[:beg_time].match(/AM/)
-        if cont[:am] || (time[:beg_time].match(/^12/))
-          early[:first] = time[:beg_time]
-          cont[:am] = false
-        elsif !(time[:beg_time].match(/^12/))
-          early[:last] = time[:beg_time]
-        end
-      end
-      if time[:beg_time].match(/PM/) 
-        if cont[:pm] || (time[:beg_time].match(/^12/))
-          late[:first] = time[:beg_time]
-          cont[:pm] = false
-        elsif !(time[:beg_time].match(/^12/))
-          late[:last] = time[:beg_time]
-        end
-      end
-    end
-      
-    unless early.nil? && late.nil?
-      if late.nil?
-        @earliest = early[:first][/^[^:]*/].to_i
-        @latest = early[:last][/^[^:]*/].to_i
-      elsif early.nil?
-        @earliest = late[:first][/^[^:]*/].to_i
-        @latest = late[:last][/^[^:]*/].to_i
-      else
-        @earliest = early[:first][/^[^:]*/].to_i
-        @latest = late[:last][/^[^:]*/].to_i + 12
-      end
-    end
-  end
-=end
 end

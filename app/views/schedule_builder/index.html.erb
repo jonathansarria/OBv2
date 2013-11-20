@@ -1,8 +1,10 @@
 
 <div class="sched_build row">
+<% if @init %>
   <div class="sched_table col-md-8">
     <%= render "schedule_builder/week" %>
   </div>
+<% end %>
   <div class="sched_menu col-md-4">
     <%= render "schedule_builder/week_form" %>
   </div>

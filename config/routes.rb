@@ -3,7 +3,7 @@ OBv2::Application.routes.draw do
 
   root  'home#index'
   match '/schedule_builder',  to: 'schedule_builder#index',            via: 'get'
-  match '/schedule_builder',  to: 'schedule_builder#index',            via: 'post'
+  match '/schedule_builder',  to: 'schedule_builder#week',            via: 'post'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,8 +1,6 @@
-    <%= form_for :post do |f| %>
 
-      <%= render "schedule_builder/courses" %>
-      
       <noscript>
+    <%= form_for :post do |f| %>
 <ul>
   <% @table_header.each do |header| %>
     <li><%= header %></li>
@@ -10,9 +8,14 @@
 </ul>
 
     <%= f.select(:courses, options_for_select(@course_selection), {}, {:multiple=>true}) %>
-
-
+    <%= submit_tag("Display Week", :name => "display") %>
+<% end %>
       </noscript>
+
+    <%= form_for :post do |f| %>
+
+      <%= render "schedule_builder/courses" %>
+      
       
       <p>Beginning Times:</p>
       <%= f.select :s_time, options_for_select(@time_sel, @earliest) %>
@@ -40,5 +43,6 @@
         <%= f.check_box :day, {id: 'post_Online', multiple: true}, 'O', nil %>O
       <% end %>
 
-      <%= submit_tag(value = "Submit") %>
+      <%= submit_tag("Narrow Courses", :name => "narrow") %>
+
     <% end %>

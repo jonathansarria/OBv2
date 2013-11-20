@@ -11,8 +11,22 @@
       <% (0...24).each do |i| %>
         <tr class="<%= i.to_s %>">
           <th scope="row" ><%= Time.now.change(hour: i).strftime("%l:%M %p") %></th>
-          <% (0...5).each do |i| %>
-            <td class="<%= @days_abbr[i] %>"></td>
+          <% (0...5).each do |j| %>
+            <td class="<%= @days_abbr[j] %>">
+              <% @courses.each do |c| %>
+                <% if c.days.split().include? @days_abbr[j] %>
+                  <% if c.beg_time[/(A|P)/] == "P" %>
+                    <% if c.beg_time[/^[^:]*/].to_i%24 == i %>
+                      <div class="<%= c.crn %>"><%= c.title %></div>
+                    <% end %>
+                  <% else %>
+                    <% if c.beg_time[/^[^:]*/].to_i == i %>
+                      <div class="<%= c.crn %>"><%= c.title %></div>
+		    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </td>
           <% end %>
         </tr>
       <% end %>
