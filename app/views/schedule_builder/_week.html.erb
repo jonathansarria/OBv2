@@ -14,7 +14,7 @@
           <% (0...5).each do |j| %>
             <td class="<%= @days_abbr[j] %>">
               <% @courses.each do |c| %>
-                <% if c.days.split().include? @days_abbr[j] %>
+                <% if c.days.split().include? @days_abbr[j] and !@init %>
                   <% if c.beg_time[/(A|P)/] == "P" %>
                     <% if c.beg_time[/^[^:]*/].to_i%24 == i %>
                       <div class="<%= c.crn %>"><%= c.title %></div>
