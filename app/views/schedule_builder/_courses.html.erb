@@ -1,26 +1,26 @@
 <table id="course_menu" style="display: none;">             
-    <thead>
-        <tr> 
-        <% @table_header.each do |header| %>
-            <% if header == "crn" %>
-              <th style="visibility: hidden;"><%= header %></th>
-            <% else %>
-                <th><%= header %></th>
-            <% end %>
+  <thead>
+    <tr> 
+    <% @table_header.each do |header| %>
+      <% if header == "crn" %>
+        <th style="visibility: hidden;"><%= header %></th>
+      <% else %>
+        <th><%= header %></th>
+      <% end %>
+    <% end %>
+    </tr> 
+  </thead> 
+  <tbody> 
+    <% @courses.each do |course| %>
+      <tr id="<%= course.crn %>" class="selectable">
+      <% @table_header.each do |attr| %>
+        <% if attr == "crn" %>
+          <td class="<%= attr %>" style="visibility: hidden;"><%= course.send(attr) %></td>
+        <% else %>
+          <td class="<%= attr %>"><%= course.send(attr) %></td>
         <% end %>
-        </tr> 
-    </thead> 
-    <tbody> 
-        <% @courses.each do |course| %>
-        <tr id="<%= course.crn %>" class="selectable">
-        <% @table_header.each do |attr| %>
-            <% if attr == "crn" %>
-                <%= content_tag(:td, course.send(attr), {class: attr, style: "visibility: hidden;"}) %>
-            <% else %>
-                <%= content_tag(:td, course.send(attr), class: attr) %>
-            <% end %>
-        <% end %>
-        </tr> 
-        <% end %>
-    </tbody> 
+      <% end %>
+      </tr> 
+    <% end %>
+  </tbody> 
 </table>

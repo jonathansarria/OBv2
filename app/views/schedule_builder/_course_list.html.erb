@@ -3,9 +3,19 @@
     <% if elm[:title].blank? %>
       <li>&uarr;&nbsp;&nbsp;&nbsp;&nbsp;<%= elm[:beg_time]+"-"+elm[:end_time]+" on "+elm[:days] %>
     <% elsif elm[:days].blank? %>
-      <li><span class="course_title"><%= elm[:title] %></span><span class="slash">/</span><span class="course_num"><%= elm[:course] %></span>: Online
+      <li>
+        <span class="course_title"><%= elm[:title] %></span>
+        <span class="slash">/</span>
+        <span class="course_num"><%= elm[:course] %></span>
+        : Online
+      </li>
     <% else %>
-      <li><span class="course_title"><%= elm[:title] %></span><span class="slash">/</span><span class="course_num"><%= elm[:course] %></span><%= ": "+elm[:beg_time]+"-"+elm[:end_time]+" on "+elm[:days] %>
+      <li>
+        <span class="course_title"><%= elm[:title] %></span>
+        <span class="slash">/</span>
+        <span class="course_num"><%= elm[:course] %></span>
+        <%= ": "+elm[:beg_time]+"-"+elm[:end_time]+" on "+elm[:days] %>
+      </li>
     <% end %>
   <% end %>
 </ul>

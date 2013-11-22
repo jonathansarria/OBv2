@@ -3,6 +3,7 @@
     <li><%= header %></li>
   <% end %>
 </ul>
-  <% @courses.each do |course| %>
-    <%= f.select(:lol, course.all.collect {|c| [ c.crn ] }, {:multiple=>true, :name => "courses"}) %>
-  <% end %>
+
+<% @courses.each do |course| %>
+  <%= f.select(:lol, course.all.collect {|c| [ c.crn ] }, {:multiple=>true, :name => "courses"}) %>
+<% end %>

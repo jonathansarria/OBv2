@@ -1,28 +1,31 @@
-
 <div class="sched_build row">
-<% if @init %>
+  <% if @init %>
   <div class="sched_table col-md-8">
     <%= render "schedule_builder/week" %>
   </div>
-<% end %>
+  <% end %>
+
   <div class="sched_menu col-md-4">
     <%= render "schedule_builder/week_form" %>
   </div>
 </div>
-<!-- <script>
 
-  var earliest = <%= @earliest %>;
-  var latest = <%= @latest %>;
+<script>
+  $(function() {
+    var earliest = <%= @earliest %>;
+    var latest = <%= @latest %>;
 
-  $("tr").each(function() {
-    var hideTime = $(this).attr('id');
-    if(hideTime < earliest || hideTime > latest) {
-      $(this).hide();
-    }
+    $.each($("div.sched_table>table>tbody>tr"), function(index, tr) {
+      var $tr = $(tr);
+      var hideTime = parseInt($tr.attr('class'));
+
+      if(hideTime < earliest || hideTime > latest) {
+        $tr.hide();
+      }
+    });
   });
-
-</script> -->
+</script>
 
 <!-- TODO: the database entries that don't have crn, course, sect, etc need fixin
-     TODO: fix the schedule table (hidden crn td)
-     TODO: fix the calander table (better layout, hide unused time within limits) -->
+TODO: fix the schedule table (hidden crn td)
+TODO: fix the calander table (better layout) -->
