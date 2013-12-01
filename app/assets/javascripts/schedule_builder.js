@@ -65,19 +65,57 @@ $(document).ready(function(){
   }
 
   function addDelCourse($data, add) {
-    var sel_time = getTimes($data.find(".beg_time").text(), $data.find(".end_time").text());
-    var sel_days = $data.find(".days").text().split(" ").filter(function(v){return v!==''});
-    var crn_id = $data.find(".crn").text();
+    var selTime = getTimes($data.find(".beg_time").text(), $data.find(".end_time").text());
+    var selDays = $data.find(".days").text().split(" ").filter(function(v){return v!==''});
+    var crnId = $data.find(".crn").text();
+    var $cell = null;
+    var $cellChildren = null;
 
-    $.each(sel_days, function(index, day) {
-      var $cell = $("."+sel_time[0]).find("."+day);
+    $.each(selDays, function(index, day) {
+      $cell = $("."+selTime[0]).find("."+day);
       
       if (add) {
-        if (!$cell.find("."+crn_id).length) {
-          $cell.append( "<div class=\""+crn_id+"\">"+$data.find("td.title").text()+"</div>" );
+        if (!$cell.find("."+crnId).length) {
+          $cell.append( "<div class=\""+crnId+"\">"+$data.find("td.title").text()+"</div>" );
+          $cellChildren = $cell.children();
+
+          if($cellChildren.length == 1) {
+            for(i=selTime[0]; i<=selTime[1]; i++) {
+              $cell = $("."+i).find("."+day);
+              
+              $cell.css("background", "green");
+            }
+          } else {
+            for(i=selTime[0]; i<=selTime[1]; i++) {
+              $cell = $("."+i).find("."+day);
+              
+              $cell.css("background", "red");
+            }
+          }
         }
       } else {
-        $cell.find("."+crn_id).remove();
+        $cell.find("."+crnId).remove();
+        $cellChildren = $cell.children();
+
+        if($cellChildren.length == 0) {
+          for(i=selTime[0]; i<=selTime[1]; i++) {
+            $cell = $("."+i).find("."+day);
+            
+            $cell.css("background", "transparent");
+          }
+        } else if($cellChildren.length == 1) {
+          for(i=selTime[0]; i<=selTime[1]; i++) {
+            $cell = $("."+i).find("."+day);
+            
+            $cell.css("background", "green");
+          }
+        } else {
+          for(i=selTime[0]; i<=selTime[1]; i++) {
+            $cell = $("."+i).find("."+day);
+            
+            $cell.css("background", "red");
+          }
+        }
       }
     });
   }
@@ -87,6 +125,7 @@ $(document).ready(function(){
   * "selection" class for multi unselect. */
   function multiSelect(elm) {
     var $selected = $(".ui-selecting");
+    var $tr = null;
 
     /* On mouseup, an element will not have ui-selecting class if one
     element is chosen */
@@ -95,7 +134,7 @@ $(document).ready(function(){
     }
 
     $.each($selected, function(index, tr) {
-      var $tr = $(tr);
+      $tr = $(tr);
 
       /* check is class is online */
       if (getTimes($tr.find(".beg_time").text(), $tr.find(".end_time").text()).length) {
@@ -134,13 +173,28 @@ $(document).ready(function(){
     onCourses = false;
   });
 
+  $(this).mouseup(function(e) {
+    var $tr = $(e.target).parent();
+    
+    if(!$tr.hasClass("selectable")){
+      var $unHighlight = $(".ui-selecting");
+      var $elm=null;
+
+      $.each($unHighlight, function(index, elm) {
+        $elm = $(elm);
+        $elm.removeClass("ui-selecting");
+      });
+    }
+  });
+
   /* Adds user selected classes to post TODO: add the data to the post array instead*/
   $( "form" ).submit(function( event ) {
     var selected = $(".ui-selected");
     var text = new Array(); //has to be submitted as array!
+    var $elm = null;
 
     $.each(selected, function (index, elm) {
-      var $elm = $(elm);
+      $elm = $(elm);
       
       text.push($elm.attr("id"));
     });
